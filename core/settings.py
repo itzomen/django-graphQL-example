@@ -38,9 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'shop',
-    'quiz',
+    'users',
+
     'graphene_django',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+    
+    'shop',
+    'quiz',  
 ]
 
 MIDDLEWARE = [
@@ -123,8 +127,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'users.ExtendUser'
+
 
 GRAPHENE = {
+
+    'SCHEMA': 'users.schema.schema',
     'SCHEMA': 'shop.schema.schema', # Where your Graphene schema lives
     'SCHEMA': 'quiz.schema.schema',
 }
