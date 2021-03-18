@@ -5,6 +5,7 @@ from . import models
 
 class CatAdmin(admin.ModelAdmin):
     list_display = [
+        'id',
         'name',
     ]
 
