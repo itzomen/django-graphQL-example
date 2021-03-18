@@ -42,7 +42,9 @@ INSTALLED_APPS = [
 
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
-    
+    'graphql_auth',
+    'django_filters',
+
     'shop',
     'quiz',  
 ]
@@ -133,6 +135,37 @@ AUTH_USER_MODEL = 'users.ExtendUser'
 GRAPHENE = {
 
     'SCHEMA': 'users.schema.schema',
-    'SCHEMA': 'shop.schema.schema', # Where your Graphene schema lives
-    'SCHEMA': 'quiz.schema.schema',
+
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+
+    # 'SCHEMA': 'shop.schema.schema',
+    # 'SCHEMA': 'quiz.schema.schema',
 }
+
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_auth.backends.GraphQLAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+GRAPHQL_JWT = {
+    "JWT_ALLOW_ANY_CLASSES": [
+        "graphql_auth.mutations.Register",
+        "graphql_auth.mutations.VerifyAccount",
+        "graphql_auth.mutations.ObtainJSONWebToken",
+    ],
+    # using refresh Token
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+}
+
+# command to kill server port process
+# sudo fuser -k 8000/tcp
+
+# setup with gmail later
+# When regitered, confirmation url has a code that should be
+# used in the frontend to verify the user
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
