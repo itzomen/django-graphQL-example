@@ -134,14 +134,11 @@ AUTH_USER_MODEL = 'users.ExtendUser'
 
 GRAPHENE = {
 
-    'SCHEMA': 'users.schema.schema',
+    'SCHEMA': 'core.schema.schema',
 
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
-
-    # 'SCHEMA': 'shop.schema.schema',
-    # 'SCHEMA': 'quiz.schema.schema',
 }
 
 

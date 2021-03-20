@@ -8,12 +8,9 @@ class ProductType(DjangoObjectType):
         #fields = ("id", "name", "description")
         fields = "__all__"
 
-class Query(graphene.ObjectType):
+class ShopQueries(graphene.ObjectType):
     products = graphene.List(ProductType)
 
     @graphene.resolve_only_args
     def resolve_products(self):
         return Product.objects.all()
-
-
-schema = graphene.Schema(query=Query)

@@ -28,7 +28,7 @@ class AnswerType(DjangoObjectType):
 
 
 
-class Query(graphene.ObjectType):
+class QuizQueries(graphene.ObjectType):
     
     all_quizzes = graphene.Field(QuizzesType, id=graphene.Int())
     #all_quizzes = DjangoListField(QuizzesType)
@@ -93,11 +93,8 @@ class DeleteCategoryMutation(graphene.Mutation):
 
 
 
-class Mutation(graphene.ObjectType):
+class QuizMutations(graphene.ObjectType):
 
     create_category = CategoryMutation.Field()
     update_category = UpdateCategoryMutation.Field()
     delete_category = DeleteCategoryMutation.Field()
-
-
-schema = graphene.Schema(query=Query, mutation=Mutation)
