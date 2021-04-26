@@ -4,7 +4,6 @@ from graphql_auth.schema import UserQuery, MeQuery
 from users.schema import AuthMutations
 from quiz.schema import QuizQueries, QuizMutations
 from shop.schema import ShopQueries
-from blog.schema import BlogQueries, BlogMutations
 
 
 
@@ -13,7 +12,6 @@ class Query(
     MeQuery,
     QuizQueries,
     ShopQueries,
-    BlogQueries,
 
     graphene.ObjectType):
     pass
@@ -22,7 +20,6 @@ class Query(
 class Mutation(
     AuthMutations,
     QuizMutations,
-    BlogMutations,
     
     graphene.ObjectType):
    pass

@@ -1,5 +1,4 @@
 export interface Question {
-    id: number;
+    id: string;
     title: string;
-    quiz: string;
 }

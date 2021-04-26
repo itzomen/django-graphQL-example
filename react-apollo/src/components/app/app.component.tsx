@@ -10,23 +10,28 @@ import './app.component.css'
 import Home from "../../pages/home/home.page"
 import About from "../../pages/about/about.page"
 
+import { ApolloProvider } from "@apollo/client";
+import client from "../../common/apollo-client";
+
 
 const App: React.FC = () => {
     return(
-        <Router>
-            <Header />
-            <Switch>
+        <ApolloProvider client={client}>
+            <Router>
+                <Header />
+                <Switch>
 
-                <Route path="/about">
-                    <About />
-                </Route>
+                    <Route path="/about">
+                        <About />
+                    </Route>
 
-                <Route path="/">
-                    <Home />
-                </Route>
-                
-            </Switch>
-        </Router>
+                    <Route path="/">
+                        <Home />
+                    </Route>
+
+                </Switch>
+            </Router>
+        </ApolloProvider>
     );
 }
 
