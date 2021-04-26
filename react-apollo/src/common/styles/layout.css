@@ -1,0 +1,8 @@
+
+
+/* Initializing margins, paddings so we can add them on other component */
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

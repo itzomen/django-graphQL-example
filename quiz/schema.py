@@ -18,7 +18,7 @@ class QuizzesType(DjangoObjectType):
 class QuestionsType(DjangoObjectType):
     class Meta:
         model = Questions
-        fields = ("title", "quiz")
+        fields = ("id", "title", "quiz")
 
 
 class AnswerType(DjangoObjectType):
@@ -33,15 +33,20 @@ class QuizQueries(graphene.ObjectType):
     all_quizzes = graphene.Field(QuizzesType, id=graphene.Int())
     #all_quizzes = DjangoListField(QuizzesType)
 
-    all_questions = graphene.Field(QuestionsType, id=graphene.Int())
+    question = graphene.Field(QuestionsType, id=graphene.Int())
+
+    all_questions = graphene.List(QuestionsType)
 
     all_answers = graphene.List(AnswerType, id=graphene.Int())
 
     def resolve_all_quizzes(root, info, id):
         return Quizzes.objects.get(pk=id)
 
-    def resolve_all_questions(root, info, id):
+    def resolve_question(root, info, id):
         return Questions.objects.get(pk=id)
+
+    def resolve_all_questions(root, info):
+        return Questions.objects.all()
 
     def resolve_all_answers(root, info, id):
         # filter returns several objects

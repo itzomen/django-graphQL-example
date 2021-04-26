@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     'shop',
-    'quiz',  
+    'quiz', 
 ]
 
 MIDDLEWARE = [
