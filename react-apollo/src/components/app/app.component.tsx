@@ -14,6 +14,7 @@ import About from "../../pages/about/about.page"
 
 import { ApolloProvider } from "@apollo/client";
 import client from "../../common/apollo-client";
+import tenantClient from "../../common/custom-client";
 
 
 
@@ -25,7 +26,7 @@ const App: React.FC = () => {
 
     return(
         <SchemaContext.Provider value={{ schema, setSchema }}>
-            <ApolloProvider client={client}>
+            <ApolloProvider client={tenantClient(schema)}>
                 <Router>
                     <Header />
                     <Switch>

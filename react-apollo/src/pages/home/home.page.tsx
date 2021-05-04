@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { useApolloClient, ApolloConsumer } from "@apollo/client"
+import { ApolloClient, InMemoryCache , gql, useQuery, useApolloClient } from "@apollo/client"
 
 import './home.page.css'
 
 import { useSchema } from "../../components/app/Context"
 
 import QuestionGrid from "../../components/question/question.component"
-import { useGetQuestions } from "../../hooks/questions/useGetQuestions";
+import { useGetQuestions, GET_QUESTIONS } from "../../hooks/questions/useGetQuestions";
 import client from "../../common/apollo-client";
 import newApolloClient from "../../common/custom-client";
+import { Question } from "../../common/interfaces/question.interface"
+import { useState } from "react";
 
 
 const Home: React.FC = () => {
@@ -43,27 +45,75 @@ const Home: React.FC = () => {
     // }
     // const URL = GetSchema();
 
-    // const withApolloClient = () => (
-    //     <ApolloConsumer>
-    //         {client => }
-    //     </ApolloConsumer>
-    // );
 
     // --------------------------------
     const myclient = newApolloClient(schema)
 
-    useEffect(() => {
+
+    // const qry = myclient.query({
+    //     query: GET_QUESTIONS,
+    // })
+
+    // console.log("Query is", qry);
+
+    // try {
+
+    //     qry.then((response) => 
+
+    //     {
+    //         const { data, error, loading } = response
+
+    //         console.log("Response data", response.data)
+    //     }
+
+
+    //     )
         
-        console.log('useeffect ran', schema)
-        // const myclient = newApolloClient(schema)
-        console.log('tenant client', myclient.link)
-        // return () => {
-        //     cleanup
-        // }
-    }, [schema])
+    // } catch (error) {
+    //     qry.catch((err) => console.error(err))
+    //     console.log("ERROR", error)
+    // }
+
+    //=---------------------------------------------
+
+    // ------------------------------------------------
+
+    const client = useApolloClient();
+
+    console.log("Client in context", client.link)
+    console.log("Client cache", client.cache)
+
+
+    //------------------------------------------------
 
     
-   
+
+    
+
+    // const { data } = useQuery(GET_QUESTIONS, { context: {clientName: "name"}});
+
+
+    // const GetQuestions = (): Question[] | undefined => {
+    //     const { data } = useQuery(GET_QUESTIONS, { client: tclient});
+    //     return data?.allQuestions;
+    // }
+
+    // const data = GetQuestions() 
+
+    // console.log("Query is", data);
+
+
+
+
+
+    // useEffect(() => {
+     
+    //     console.log('useeffect ran', schema)
+    //     // const myclient = newApolloClient(schema)
+    //     console.log('tenant client', myclient.link)
+        
+    // }, [schema]);
+
     
 
 
@@ -74,6 +124,7 @@ const Home: React.FC = () => {
             {schema}
             <button onClick={() => setSchema("shop1.")} >SHOP1</button>
             <button onClick={() => setSchema("shop2.")} >SHOP2</button>
+            <button onClick={() => setSchema("")} >Public</button>
             </h3>
             <hr></hr>
             <QuestionGrid questions={questions || []}/>
