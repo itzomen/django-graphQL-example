@@ -21,96 +21,15 @@ const Home: React.FC = () => {
     const { schema, setSchema } = useSchema();
     console.log('start schema:', schema)
 
-    // const myclient = useApolloClient();
-
-    // const httpLink = createHttpLink({
-    //     uri: 'http://127.0.0.1:8000/gr',
-    // });
-
-    // myclient.link = httpLink
-
-    // my client is now set to the ApolloClient instance being usd
-    // by the app configured using ApolloProvider
-    // console.log('myclient:', myclient.link)
-
-    // const { link, setLink } = useApolloClient();
-
-    // console.log('client:', setLink)
-
-
-    // function GetSchema(){
-    //     const { schema } = useSchema();
-    //     console.log('get ran, schema is :', schema);
-    //     return schema;
-    // }
-    // const URL = GetSchema();
-
-
-    // --------------------------------
-    const myclient = newApolloClient(schema)
-
-
-    // const qry = myclient.query({
-    //     query: GET_QUESTIONS,
-    // })
-
-    // console.log("Query is", qry);
-
-    // try {
-
-    //     qry.then((response) => 
-
-    //     {
-    //         const { data, error, loading } = response
-
-    //         console.log("Response data", response.data)
-    //     }
-
-
-    //     )
-        
-    // } catch (error) {
-    //     qry.catch((err) => console.error(err))
-    //     console.log("ERROR", error)
-    // }
-
-    //=---------------------------------------------
-
-    // ------------------------------------------------
-
     const client = useApolloClient();
 
     console.log("Client in context", client.link)
-    console.log("Client cache", client.cache)
-
-
-    //------------------------------------------------
-
-    
-
-    
-
-    // const { data } = useQuery(GET_QUESTIONS, { context: {clientName: "name"}});
-
-
-    // const GetQuestions = (): Question[] | undefined => {
-    //     const { data } = useQuery(GET_QUESTIONS, { client: tclient});
-    //     return data?.allQuestions;
-    // }
-
-    // const data = GetQuestions() 
-
-    // console.log("Query is", data);
-
-
-
+    console.log("Client in context", client.cache)
 
 
     // useEffect(() => {
      
     //     console.log('useeffect ran', schema)
-    //     // const myclient = newApolloClient(schema)
-    //     console.log('tenant client', myclient.link)
         
     // }, [schema]);
 
