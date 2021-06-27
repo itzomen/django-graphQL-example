@@ -18,6 +18,8 @@ const Home: React.FC = () => {
     const questions = useGetQuestions();
     console.log('questions:',questions)
     
+    const { data, loading } = useQuery(GET_QUESTIONS);
+    
     const { schema, setSchema } = useSchema();
     console.log('start schema:', schema)
 
@@ -46,7 +48,7 @@ const Home: React.FC = () => {
             <button onClick={() => setSchema("")} >Public</button>
             </h3>
             <hr></hr>
-            <QuestionGrid questions={questions || []}/>
+            <QuestionGrid questions={data?.allQuestions || []}/>
         </div>
     );
 }

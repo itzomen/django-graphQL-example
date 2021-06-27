@@ -63,6 +63,7 @@ class CategoryMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, name):
+        print(name)
         category = Category(name=name)
         category.save()
         return CategoryMutation(category=category)

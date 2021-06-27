@@ -14,6 +14,6 @@ query Questions{
 // const { } = useMutation(GET_QUESTIONS, {context: {clientName: "name"} })
 
 export const useGetQuestions = (): Question[] | undefined => {
-    const { data } = useQuery(GET_QUESTIONS);
+    const { data, loading } = useQuery(GET_QUESTIONS);
     return data?.allQuestions;
 }
